@@ -5,7 +5,7 @@
 Bikeshare
 
 ### Description
-Analyze bikeshare data
+Analyze bikeshare data of three cities (Chicago, New York City, Washington)
 
 ### Files used
 bikeshare.py
