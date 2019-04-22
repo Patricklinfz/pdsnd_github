@@ -30,14 +30,14 @@ def get_filters():
 
     # TO DO: get user input for month (all, january, february, ... , june)
     while True:
-        month = input('Check all 6 months (all); Pick a month available (january, february, ... , june):')
+        month = (input('Check all 6 months (all); Pick a month available (january, february, ... , june):')).lower()
         if month in list(MONTH_DATA.keys()) or month == 'all':
             break
         print('That\'s not a valid input, please try again')
 
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
-        day = input('Check all 7 days (all); Pick a day of week (monday, tuesday, ... sunday):')
+        day = (input('Check all 7 days (all); Pick a day of week (monday, tuesday, ... sunday):')).lower()
         if day in list(WEEK_DATA.keys()) or day == 'all':
             break
         print('That\'s not a valid input, please try again')
