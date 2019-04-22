@@ -23,7 +23,7 @@ def get_filters():
     print('Hello! Let\'s explore some US bikeshare data!')
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
-        city = input('Pick a city available (chicago, new york city, washington):')
+        city = (input('Pick a city available (chicago, new york city, washington):')).lower()
         if city in list(CITY_DATA.keys()):
             break
         print('That\'s not a valid input, please try again')
@@ -47,7 +47,7 @@ def get_filters():
 
 
 def load_data(city, month, day):
-    
+
     """
     Loads data for the specified city and filters by month and day if applicable.
 
@@ -58,24 +58,24 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    #filter city     
+    #filter city
     df = pd.read_csv(CITY_DATA[city])
-    
+
     #filter month
     df['month'] = pd.to_datetime(df['Start Time']).dt.month
-    
+
     if month != 'all':
         month = MONTH_DATA[month]
         df = df[df['month'] == month]
-    
+
     #filter dayofweek
     df['dayofweek'] = pd.to_datetime(df['Start Time']).dt.weekday
-    
+
     if day != 'all':
         day = WEEK_DATA[day]
         df = df[df['dayofweek']==day]
-    
-    
+
+
     return df
 
 
@@ -86,15 +86,15 @@ def time_stats(df):
     start_time = time.time()
 
     # TO DO: display the most common month
-    if df['month'].nunique() != 1: 
+    if df['month'].nunique() != 1:
         popular_month_num = df['month'].value_counts().index[0]
         popular_month = list(MONTH_DATA.keys())[popular_month_num-1]
         print('the most common month:  ', popular_month)
 
     # TO DO: display the most common day of week
-    if df['dayofweek'].nunique() != 1: 
+    if df['dayofweek'].nunique() != 1:
         popular_day_num = df['dayofweek'].value_counts().index[0]
-        popular_day = list(WEEK_DATA.keys())[popular_day_num]                            
+        popular_day = list(WEEK_DATA.keys())[popular_day_num]
         print('the most common day of week:  ', popular_day)
 
     # TO DO: display the most common start hour
@@ -147,7 +147,7 @@ def trip_duration_stats(df):
     meantime = np.mean(df['Trip Duration'])
     r_mean_time = round(meantime)
     print('mean travel time:  ', r_mean_time)
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -166,7 +166,7 @@ def user_stats(df):
     # TO DO: Display counts of gender
     if 'Gender' not in df.columns:
         print('No data available on users\' gender information')
-    else: 
+    else:
         count_gender = df['Gender'].value_counts()
         print('counts of gender:')
         print(count_gender)
@@ -174,7 +174,7 @@ def user_stats(df):
     # TO DO: Display earliest, most recent, and most common year of birth
     if 'Birth Year' not in df.columns:
         print('No data available on users\' birth year information')
-    else: 
+    else:
         df1 = df.dropna()
         sort_by = list(df1['Birth Year'].sort_values(ascending = False))
         count_by = df1['Birth Year'].value_counts()
